@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SV Computer Tool</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <!-- Header Section with Custom Tech Logo -->
+    <header class="main-header">
+        <div class="digital-logo">
+            <span class="logo-icon">⚡</span>
+            <span class="logo-text">SV<span class="logo-sub">TECH</span></span>
+        </div>
+        <h1 class="glowing-title">SV COMPUTER TOOL</h1>
+        <button class="menu-btn" onclick="toggleMenu()">☰ Menu</button>
+    </header>
+
+    <!-- Side Menu -->
+    <nav class="side-menu" id="sideMenu">
+        <span class="close-btn" onclick="toggleMenu()">&times;</span>
+        <a href="#" onclick="showPage('dashboard'); toggleMenu();">Home Dashboard</a>
+        <a href="#" onclick="showPage('resume-page'); toggleMenu();">Professional Resume Builder</a>
+        <a href="#" onclick="showPage('nsdl-page'); toggleMenu();">NSDL Agency Registration</a>
+    </nav>
+
+    <!-- MAIN APP CONTAINER -->
+    <main class="container">
+
+        <!-- PAGE 1: MAIN DASHBOARD -->
+        <div id="dashboard" class="app-page active-page">
+            
+            <!-- Row 1: Advanced Processing Tools -->
+            <section class="grid-section">
+                <!-- Photo & Signature Crop Card -->
+                <div class="card">
+                    <h3>📷 Photo & Signature Crop</h3>
+                    <p>Auto-crop to square ratio & compress instantly</p>
+                    <div class="tool-inputs">
+                        <input type="file" id="cropFileInput" accept="image/*" class="file-input-field">
+                        <select id="cropSizeSelect" class="select-field">
+                            <option value="30">Max 30 KB (Signature)</option>
+                            <option value="50">Max 50 KB (Passport Photo)</option>
+                            <option value="100">Max 100 KB (Document)</option>
+                        </select>
+                    </div>
+                    <button class="action-btn" onclick="processAndDownloadCrop()">Crop & Download</button>
+                </div>
+
+                <!-- PDF Resize Card -->
+                <div class="card">
+                    <h3>📄 PDF Resize Tool</h3>
+                    <p>Compress layout structure size limits</p>
+                    <div class="tool-inputs">
+                        <input type="file" id="pdfFileInput" accept="application/pdf" class="file-input-field">
+                        <select id="pdfSizeSelect" class="select-field">
+                            <option value="20">Target 20 KB</option>
+                            <option value="50">Target 50 KB</option>
+                            <option value="100">Target 100 KB</option>
+                        </select>
+                    </div>
+                    <button class="action-btn" onclick="alert('PDF system processing initialized.')">Resize & Download PDF</button>
+                </div>
+
+                <div class="card unique-card" onclick="showPage('resume-page')">
+                    <h3>📝 Professional Resume</h3>
+                    <p>Create job-ready resumes instantly</p>
+                    <span class="click-badge">Open Form ➔</span>
+                </div>
+            </section>
+
+            <!-- Row 2: Govt Gateways -->
+            <section class="grid-section">
+                <div class="card gov-card">
+                    <h3>💳 PAN Card Download</h3>
+                    <a href="https://onlineservices.proteantech.in/paam/requestAndDownloadEPAN.html" target="_blank" class="service-link-btn">Download e-PAN</a>
+                </div>
+                <div class="card gov-card">
+                    <h3>🆔 Aadhaar Card Download</h3>
+                    <a href="https://myaadhaar.uidai.gov.in/genricDownloadAadhaar/en" target="_blank" class="service-link-btn">Download Aadhaar</a>
+                </div>
+                <div class="card gov-card">
+                    <h3>🗳️ Voter ID Apply</h3>
+                    <a href="https://voters.eci.gov.in/form6" target="_blank" class="service-link-btn" style="background: #20bf6b;">Apply Online</a>
+                </div>
+                <div class="card gov-card">
+                    <h3>🗳️ Voter ID Download</h3>
+                    <a href="https://voters.eci.gov.in/home/e-epic-download" target="_blank" class="service-link-btn" style="background: #8854d0;">Download e-EPIC</a>
+                </div>
+            </section>
+
+            <!-- Row 3: Advanced Studio Services -->
+            <section class="grid-section">
+                <div class="card gov-card">
+                    <h3>💳 New PAN Apply</h3>
+                    <a href="https://ictseva.com/portallogin/login" target="_blank" class="service-link-btn">Apply via ICT Seva</a>
+                </div>
+                <div class="card gov-card">
+                    <h3>🔍 PAN Status Track</h3>
+                    <a href="https://tin.tin.proteantech.in/pantan/StatusTrack.html" target="_blank" class="service-link-btn">Track PAN Status</a>
+                </div>
+                
+                <!-- Passport Size Photo Generator Card -->
+                <div class="card gov-card">
+                    <h3>📸 Passport Photo Maker</h3>
+                    <p>Auto-crop & align into an 8-Photo dynamic sheet</p>
+                    <div class="tool-inputs">
+                        <input type="file" id="passportFileInput" accept="image/*" class="file-input-field">
+                    </div>
+                    <button class="action-btn" onclick="generateAndDownloadPassportPhotos()">Generate & Download Sheet</button>
+                </div>
+                
+                <div class="card unique-card gold-card" onclick="showPage('nsdl-page')">
+                    <h3>💼 NSDL PAN Agency ID</h3>
+                    <p>Apply for Admin approval</p>
+                    <span class="click-badge">Register Now ➔</span>
+                </div>
+            </section>
+        </div>
+
+        <!-- PAGE 2: PROFESSIONAL RESUME BUILDER -->
+        <div id="resume-page" class="app-page">
+            <button class="back-btn" onclick="showPage('dashboard')">⬅ Back to Dashboard</button>
+            <div class="form-section">
+                <h2>📝 Professional Resume Form</h2>
+                <form id="resumeForm">
+                    <div class="form-grid">
+                        <div class="form-group"><label>Full Name</label><input type="text" placeholder="John Doe" required></div>
+                        <div class="form-group"><label>Email ID</label><input type="email" placeholder="john@example.com" required></div>
+                        <div class="form-group"><label>Mobile Number</label><input type="tel" placeholder="9876543210" required></div>
+                        <div class="form-group"><label>Date of Birth</label><input type="date" required></div>
+                        <div class="form-group">
+                            <label>Gender</label>
+                            <select><option>Male</option><option>Female</option><option>Other</option></select>
+                        </div>
+                        <div class="form-group"><label>Upload Formal Photo</label><input type="file" accept="image/*"></div>
+                        <div class="form-group full-width"><label>Full Address</label><input type="text" placeholder="House No, Village, Post, District, State" required></div>
+                    </div>
+
+                    <div class="section-divider">🎓 Educational Qualification</div>
+                    <div id="qualification-container">
+                        <div class="dynamic-row">
+                            <input type="text" placeholder="Degree/Course" required>
+                            <input type="text" placeholder="Board/University" required>
+                            <input type="text" placeholder="Passing Year" class="short-input" required>
+                            <input type="text" placeholder="Percentage" class="short-input" required>
+                        </div>
+                    </div>
+                    <button type="button" class="add-more-btn" onclick="addQualification()">➕ Add Another Qualification</button>
+
+                    <div class="section-divider">💼 Work Experience</div>
+                    <div id="experience-container">
+                        <div class="dynamic-row">
+                            <input type="text" placeholder="Job Title">
+                            <input type="text" placeholder="Company Name">
+                            <input type="text" placeholder="Duration">
+                        </div>
+                    </div>
+                    <button type="button" class="add-more-btn" onclick="addExperience()">➕ Add Another Experience</button>
+
+                    <div class="section-divider">🚀 Skills & Profile Overview</div>
+                    <div class="form-grid">
+                        <div class="form-group full-width"><label>Key Skills</label><input type="text" placeholder="Web Design, Tally, Typing"></div>
+                        <div class="form-group full-width"><label>About Me / Objective</label><textarea rows="3" placeholder="Write summary..."></textarea></div>
+                    </div>
+                    <button type="button" class="submit-btn" onclick="alert('Resume profile configured.')">Build & Download PDF</button>
+                </form>
+            </div>
+        </div>
+
+        <!-- PAGE 3: NSDL REGISTRATION -->
+        <div id="nsdl-page" class="app-page">
+            <button class="back-btn" onclick="showPage('dashboard')">⬅ Back to Dashboard</button>
+            <div class="form-section">
+                <h2>💼 NSDL PAN Agency ID Registration</h2>
+                <form id="agencyForm" onsubmit="submitAgencyForm(event)">
+                    <div class="form-grid">
+                        <div class="form-group"><label>Full Name</label><input type="text" id="nsdlName" required></div>
+                        <div class="form-group"><label>Mobile Number</label><input type="tel" id="nsdlMobile" required></div>
+                        <div class="form-group"><label>Email ID</label><input type="email" id="nsdlEmail" required></div>
+                        <div class="form-group"><label>Complete Address</label><input type="text" id="nsdlAddress" required></div>
+                        <div class="form-group"><label>Aadhaar Number</label><input type="text" id="nsdlAadhaar" placeholder="Enter 12 digit Aadhaar" required></div>
+                        <div class="form-group"><label>PAN Number</label><input type="text" id="nsdlPan" placeholder="ABCDE1234F" required></div>
+                    </div>
+                    <button type="submit" class="submit-btn gold-btn">Submit Application to Admin</button>
+                </form>
+            </div>
+        </div>
+
+    </main>
+
+    <!-- Hidden Canvas Elements for Background Image Processing -->
+    <canvas id="processingCanvas" style="display: none;"></canvas>
+
+    <!-- Footer Section -->
+    <footer class="main-footer">
+        <div class="footer-box about-box">
+            <h4>About Us</h4>
+            <p><strong>SV Computer and Printing Press</strong></p>
+            <p>Bahorikpur sethua, Ambedkar Nagar,<br>Uttar Pradesh, 224176</p>
+        </div>
+        <div class="footer-box help-box">
+            <h4>Help & Support</h4>
+            <p>📧 sverma01082005@gmail.com</p>
+            <p>📞 Helpline: +91 7054144078</p>
+        </div>
+        <div class="footer-box social-box">
+            <h4>Connect With Us</h4>
+            <a href="https://whatsapp.com/channel/0029VbCWglCJJhzdPwZlQQ0p" target="_blank" class="social-link whatsapp">🟢 WhatsApp Channel</a>
+            <a href="#" target="_blank" class="social-link instagram">📸 Instagram</a>
+            <a href="https://youtube.com/@shailendraverma2.1?si=mk9iBwQf9zjt4dDA" target="_blank" class="social-link youtube">🔴 YouTube</a>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
